@@ -48,7 +48,7 @@ const dev = () => {
       port: 8989,
       livereload: true
     })
-    open('http://localhost:8989')
+    // open('http://localhost:8989')
     gulp.watch(config.html.src, ['html:dev'])
     gulp.watch(config.css.src, ['css:dev'])
     gulp.watch(config.js.src, ['js:dev'])
