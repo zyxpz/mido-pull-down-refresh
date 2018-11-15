@@ -15,13 +15,13 @@ const dev = () => {
       }));
   });
 
-  gulp.task('html:dev', () => 
+  gulp.task('html:dev', () =>
     gulp.src(config.html.src)
     .pipe(gulp.dest(config.dev))
     .pipe($.connect.reload())
   );
 
-  gulp.task('css:dev', () => 
+  gulp.task('css:dev', () =>
     gulp.src(config.css.srcLess)
     .pipe($.less())
     .pipe($.autoprefixer({
@@ -32,12 +32,18 @@ const dev = () => {
     .pipe($.connect.reload())
   );
 
-  gulp.task('js:dev', () => 
+  gulp.task('js:dev', () =>
     gulp.src(config.js.src)
+    .pipe($.sourcemaps.init())
     .pipe($.babel())
     .on('error', (err) => {
       $.util.log($.util.colors.red('[Error]'), err.toString());
     })
+    .pipe($.browserify({
+      insertGlobals: !gulp.env.production,
+      debug: true
+    }))
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest(config.dev))
     .pipe($.connect.reload())
   );

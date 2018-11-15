@@ -14,7 +14,7 @@ const pre = () => {
   );
 
   gulp.task('js', () => 
-    gulp.src(config.js.src)
+    gulp.src(config.js.buildSrc)
     .pipe($.babel())
     .pipe($.uglify())
     .pipe(gulp.dest(config.dist))

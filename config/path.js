@@ -13,6 +13,7 @@ module.exports = {
   },
   js: {
     src: `${SRC_DIR}/*.js`,
+    buildSrc: `${SRC_DIR}/pulldown.js`,
     dev: `${DEV_DIR}/*.js`,
     dist: `${DIST_DIR}/*.js`,
   },
