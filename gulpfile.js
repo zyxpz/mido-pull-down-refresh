@@ -1,6 +1,10 @@
-const gulp = require('gulp')
+const gulp = require('gulp');
 
-const dev = require('./config/gulpfile.dev')
+const dev = require('./config/gulpfile.dev');
 
-dev()
+const pre = require('./config/gulpfile.pre');
+
+dev();
+
+pre();
 

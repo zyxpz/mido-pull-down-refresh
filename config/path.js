@@ -1,6 +1,6 @@
-const SRC_DIR = './src/'
-const DEV_DIR = './dev/'
-const DIST_DIR = './dist/'
+const SRC_DIR = './src/';
+const DEV_DIR = './dev/';
+const DIST_DIR = './dist/';
 
 module.exports = {
   src: SRC_DIR,
@@ -22,4 +22,4 @@ module.exports = {
     dev: `${DEV_DIR}/*.css`,
     dist: `${DIST_DIR}/*.css`,
   },
-}
+};

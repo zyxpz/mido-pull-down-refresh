@@ -1,10 +1,20 @@
 {
   "name": "mido-pull-down-refresh",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "上拉刷新，下拉加载",
+  "main": "./dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zyxpz/mido-pull-down-refresh"
+  },
+  "bugs": {
+    "url": "https://github.com/zyxpz/mido-pull-down-refresh/issues"
+  },
   "scripts": {
-    "dev": "./node_modules/.bin/gulp dev"
+    "dev": "./node_modules/.bin/gulp dev",
+    "build": "./node_modules/.bin/gulp build",
+    "lint": "eslint --ext .js src",
+    "eslint-fix": "eslint --fix ./src"
   },
   "author": "midnightBlues",
   "license": "ISC",
@@ -24,7 +34,19 @@
     "gulp-load-plugins": "^1.5.0",
     "gulp-strip-debug": "^3.0.0",
     "gulp-uglify": "^3.0.1",
-    "gulp-util": "^3.0.8",
-    "open": "^0.0.5"
-  }
+    "gulp-util": "^3.0.8"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-plugin-import": "^2.14.0",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": [
+    "lint"
+  ],
+  "files": [
+    "dist",
+    "package.json",
+    "README.md"
+  ]
 }
