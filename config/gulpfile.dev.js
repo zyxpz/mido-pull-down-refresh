@@ -55,7 +55,7 @@ const dev = () => {
       livereload: true
     });
     gulp.watch(config.html.src, ['html:dev']);
-    gulp.watch(config.css.src, ['css:dev']);
+    gulp.watch(config.css.srcLess, ['css:dev']);
     gulp.watch(config.js.src, ['js:dev']);
 
   });
