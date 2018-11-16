@@ -1,4 +1,4 @@
-module.exports = class PullDowd {
+export default class PullDowd {
   constructor(opts) {
     this.wrap = opts.wrap || null;
   }
@@ -8,6 +8,7 @@ module.exports = class PullDowd {
   }
 
   handleFindEl() {
+    console.log(this.wrap);
     if (!this.wrap) {
       throw new Error('不存在元素');
     }

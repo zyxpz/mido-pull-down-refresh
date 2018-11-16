@@ -1,9 +1,4 @@
-import PullDown from './pulldown';
 
-const wrap = document.querySelector('.test');
+import testName from './test';
 
-const pulldown =  new PullDown({
-  wrap,
-});
-
-pulldown.init(); 
+testName('xxx', '24');

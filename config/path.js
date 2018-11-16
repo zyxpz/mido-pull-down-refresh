@@ -23,4 +23,7 @@ module.exports = {
     dev: `${DEV_DIR}/*.css`,
     dist: `${DIST_DIR}/*.css`,
   },
+  ts: {
+    src: `${SRC_DIR}/*.ts`
+  }
 };

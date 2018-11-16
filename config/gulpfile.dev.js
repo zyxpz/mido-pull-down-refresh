@@ -2,9 +2,15 @@ const gulp = require('gulp');
 
 const $ = require('gulp-load-plugins')();
 
-const open = require('open');
-
 const config = require('./path');
+
+const browserify = require('browserify'); // 打包
+
+const tsify = require('tsify'); // Browserify的一个插件访问typescript编译器
+
+const source = require('vinyl-source-stream');
+
+const buffer = require('vinyl-buffer');
 
 const dev = () => {
 
@@ -32,20 +38,38 @@ const dev = () => {
     .pipe($.connect.reload())
   );
 
+  // gulp.task('js:dev', () =>
+  //   gulp.src(config.js.src)
+  //   .pipe($.sourcemaps.init({
+  //     loadMaps: true
+  //   }))
+  //   .pipe($.babel())
+  //   .on('error', (err) => {
+  //     $.util.log($.util.colors.red('[Error]'), err.toString());
+  //   })
+  //   .pipe($.browserify({
+  //     insertGlobals: !gulp.env.production,
+  //     debug: true
+  //   }))
+  //   .pipe($.sourcemaps.write('.'))
+  //   .pipe(gulp.dest(config.dev))
+  //   .pipe($.connect.reload())
+  // );
+
   gulp.task('js:dev', () =>
-    gulp.src(config.js.src)
-    .pipe($.sourcemaps.init())
-    .pipe($.babel())
-    .on('error', (err) => {
-      $.util.log($.util.colors.red('[Error]'), err.toString());
+    browserify({
+      entries: ['./src/index.js'], // 入口
+      debug: true,
+      extensions: ['.ts']
     })
-    .pipe($.browserify({
-      insertGlobals: !gulp.env.production,
-      debug: true
-    }))
-    .pipe($.sourcemaps.write('.'))
+    .plugin(tsify)
+    .transform('babelify') // babel
+    .bundle()
+    .pipe(source('index.js'))
+    .pipe(buffer())
+    // .pipe($.streamify($.uglify())) // 压缩
     .pipe(gulp.dest(config.dev))
-    .pipe($.connect.reload())
+    .pipe($.connect.reload()) // 重载
   );
 
   gulp.task('dev:server', ['html:dev', 'css:dev', 'js:dev'], () => {
@@ -57,7 +81,6 @@ const dev = () => {
     gulp.watch(config.html.src, ['html:dev']);
     gulp.watch(config.css.srcLess, ['css:dev']);
     gulp.watch(config.js.src, ['js:dev']);
-
   });
 
   gulp.task('dev', ['clean:dev'], () => {
