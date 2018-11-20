@@ -1,7 +1,6 @@
-// import * as types from 'pdTypes';
-// console.log(types, 'types', 111)
+
 export default class PullDown {
-  wrap: HTMLElement
+  // wrap: HTMLElement
   constructor(opts) {
     this.wrap = opts.wrap || null;
   }

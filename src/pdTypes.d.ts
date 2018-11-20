@@ -1,5 +1,5 @@
-declare module 'pdTypes' {
-  export class PullDown {
-    wrap: HTMLElement
-  }
-}
+// declare module 'pdTypes' {
+//   export class PullDown {
+//     wrap: HTMLElement
+//   }
+// }
