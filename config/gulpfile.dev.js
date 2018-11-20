@@ -22,13 +22,13 @@ const dev = () => {
   });
 
   gulp.task('html:dev', () =>
-    gulp.src(config.html.src)
+    gulp.src(config.html.demo)
     .pipe(gulp.dest(config.dev))
     .pipe($.connect.reload())
   );
 
   gulp.task('css:dev', () =>
-    gulp.src(config.css.srcLess)
+    gulp.src(config.css.demo)
     .pipe($.less())
     .pipe($.autoprefixer({
       browseers: ['last 2 versions', 'Firefox>=20', 'last 2 Explorer versions', 'last 3 Safari versions'],
@@ -58,7 +58,7 @@ const dev = () => {
 
   gulp.task('js:dev', () =>
     browserify({
-      entries: ['./src/index.js'], // 入口
+      entries: ['./demo/index.js'], // 入口
       debug: true,
       extensions: ['.ts']
     })
@@ -80,7 +80,7 @@ const dev = () => {
     });
     gulp.watch(config.html.src, ['html:dev']);
     gulp.watch(config.css.srcLess, ['css:dev']);
-    gulp.watch(config.js.src, ['js:dev']);
+    gulp.watch([config.js.src, config.js.demo], ['js:dev']);
   });
 
   gulp.task('dev', ['clean:dev'], () => {

@@ -1,4 +1,7 @@
-export default class PullDowd {
+// import * as types from 'pdTypes';
+// console.log(types, 'types', 111)
+export default class PullDown {
+  wrap: HTMLElement
   constructor(opts) {
     this.wrap = opts.wrap || null;
   }
@@ -8,7 +11,6 @@ export default class PullDowd {
   }
 
   handleFindEl() {
-    console.log(this.wrap);
     if (!this.wrap) {
       throw new Error('不存在元素');
     }

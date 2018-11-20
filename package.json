@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "上拉刷新，下拉加载",
   "main": "./dist/pulldown.js",
+  "type": "./dist/pulldown.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/zyxpz/mido-pull-down-refresh"
@@ -19,23 +20,25 @@
   "author": "midnightBlues",
   "license": "ISC",
   "dependencies": {
+    "@types/browserify": "^12.0.36",
+    "browserify": "^16.2.3",
+    "typescript": "^3.2.0-dev.20181117"
+  },
+  "devDependencies": {
+    "eslint": "^5.9.0",
+    "eslint-plugin-import": "^2.14.0",
+    "pre-commit": "^1.2.2",
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "@types/node": "^10.12.9",
     "babel": "^6.23.0",
     "babel-core": "^6.26.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-plugin-transform-decorators-legacy": "^1.3.5",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-es2016": "^6.24.1",
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babelify": "^10.0.0",
-    "browserify": "^16.2.3",
     "globby": "^8.0.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
@@ -52,17 +55,9 @@
     "gulp-typescript": "^5.0.0-alpha.3",
     "gulp-uglify": "^3.0.1",
     "gulp-util": "^3.0.8",
-    "through2": "^3.0.0",
     "tsify": "^4.0.0",
-    "typescript": "^3.1.6",
     "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0",
-    "watchify": "^3.11.0"
-  },
-  "devDependencies": {
-    "eslint": "^5.9.0",
-    "eslint-plugin-import": "^2.14.0",
-    "pre-commit": "^1.2.2"
+    "vinyl-source-stream": "^2.0.0"
   },
   "pre-commit": [
     "lint"
