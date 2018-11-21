@@ -78,8 +78,8 @@ const dev = () => {
       port: 8989,
       livereload: true
     });
-    gulp.watch(config.html.src, ['html:dev']);
-    gulp.watch(config.css.srcLess, ['css:dev']);
+    gulp.watch(config.html.demo, ['html:dev']);
+    gulp.watch(config.css.demo, ['css:dev']);
     gulp.watch([config.js.src, config.js.demo], ['js:dev']);
   });
 

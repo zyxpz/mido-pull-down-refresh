@@ -2,10 +2,12 @@
 function loop(): void { }
 export default class PullDown {
   public wrap: HTMLElement;
-  public pullDom: HTMLElement;
+  public pullHei: number;
+  public pullDom: any;
   constructor(opts) {
     this.wrap = opts.wrap || null;
-    this.pullDom = opts.pullDom || loop;
+    this.pullHei = opts.pullHei || 40;
+    this.pullDom = opts.pullDom() || this.handleCreatDownEl();
   }
 
   public init() {
@@ -16,7 +18,7 @@ export default class PullDown {
     if (!this.wrap) {
       throw new Error("不存在元素");
     }
-    this.wrap.innerHTML = this.handleCreatDownEl();
+
   }
 
   public handleCreatDownEl() {
