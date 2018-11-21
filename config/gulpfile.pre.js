@@ -21,6 +21,16 @@ const pre = () => {
     }))
   );
 
+  gulp.task('css', () =>
+    gulp.src(config.css.srcLess)
+    .pipe($.less())
+    .pipe($.autoprefixer({
+      browseers: ['last 2 versions', 'Firefox>=20', 'last 2 Explorer versions', 'last 3 Safari versions'],
+      cascade: true
+    }))
+    .pipe(gulp.dest(config.dist))
+  );
+
   gulp.task('js', () =>
     // gulp.src(config.js.buildSrc)
     // .pipe($.babel())
@@ -42,6 +52,7 @@ const pre = () => {
 
   gulp.task('build', ['clean'], () => {
     gulp.run('js');
+    gulp.run('css');
   });
 };
 

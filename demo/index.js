@@ -3,6 +3,8 @@ import Pulldown from '../src/pulldown';
 
 const wrap = document.querySelector('.test');
 
-new Pulldown({
+const pulldown = new Pulldown({
   wrap,
 });
+
+pulldown.init();

@@ -1,24 +1,26 @@
 
+function loop(): void { }
 export default class PullDown {
-  // wrap: HTMLElement
+  public wrap: HTMLElement;
+  public pullDom: HTMLElement;
   constructor(opts) {
     this.wrap = opts.wrap || null;
+    this.pullDom = opts.pullDom || loop;
   }
 
-  init() {
+  public init() {
     this.handleFindEl();
   }
 
-  handleFindEl() {
+  public handleFindEl() {
     if (!this.wrap) {
-      throw new Error('不存在元素');
+      throw new Error("不存在元素");
     }
     this.wrap.innerHTML = this.handleCreatDownEl();
   }
 
-  handleCreatDownEl() {
-    return '<div>handleCreatDownEl</div>';
+  public handleCreatDownEl() {
+    return '<div class="test1">handleCreatDownEl</div>';
   }
 
-
-};
+}

@@ -2,8 +2,7 @@
   "name": "mido-pull-down-refresh",
   "version": "1.0.0",
   "description": "上拉刷新，下拉加载",
-  "main": "./dist/pulldown.js",
-  "type": "./dist/pulldown.d.ts",
+  "main": "./index",
   "repository": {
     "type": "git",
     "url": "https://github.com/zyxpz/mido-pull-down-refresh"
@@ -14,8 +13,10 @@
   "scripts": {
     "dev": "./node_modules/.bin/gulp dev",
     "build": "./node_modules/.bin/gulp build",
-    "lint": "eslint --ext .js,.ts ./src",
-    "eslint-fix": "eslint --fix ./src"
+    "lint": "esw ./src/*.ts",
+    "eslint-fix": "npm run lint -- --fix",
+    "eslint-watch": "npm run lint -- --fix --watch",
+    "tslint": "node ./node_modules/.bin/tslint -p ./tsconfig.json --fix"
   },
   "author": "midnightBlues",
   "license": "ISC",
@@ -25,9 +26,6 @@
     "typescript": "^3.2.0-dev.20181117"
   },
   "devDependencies": {
-    "eslint": "^5.9.0",
-    "eslint-plugin-import": "^2.14.0",
-    "pre-commit": "^1.2.2",
     "@babel/core": "^7.1.6",
     "@babel/preset-env": "^7.1.6",
     "@types/node": "^10.12.9",
@@ -39,6 +37,9 @@
     "babel-preset-es2017": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babelify": "^10.0.0",
+    "eslint": "^5.9.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-watch": "^4.0.2",
     "globby": "^8.0.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^6.0.0",
@@ -55,12 +56,21 @@
     "gulp-typescript": "^5.0.0-alpha.3",
     "gulp-uglify": "^3.0.1",
     "gulp-util": "^3.0.8",
+    "lint-staged": "^8.0.5",
+    "pre-commit": "^1.2.2",
     "tsify": "^4.0.0",
+    "tslint": "^5.11.0",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
   },
+  "lint-staged": {
+    "src/*.ts": [
+      "tslint",
+      "git add"
+    ]
+  },
   "pre-commit": [
-    "lint"
+    "tslint"
   ],
   "files": [
     "dist",
