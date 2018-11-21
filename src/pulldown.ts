@@ -1,4 +1,3 @@
-
 function loop(): void { }
 export default class PullDown {
   public wrap: HTMLElement;
@@ -18,7 +17,19 @@ export default class PullDown {
     if (!this.wrap) {
       throw new Error("不存在元素");
     }
+    this.handlePullEl();
+  }
 
+  public handlePullEl() {
+    const pullDom = document.createElement("div");
+
+    pullDom.className = "pull-down-wrap";
+
+    pullDom.innerHTML = this.pullDom;
+
+    this.wrap.insertBefore(pullDom, this.wrap.childNodes[0]);
+
+    this.wrap.style.cssText = `transform: translate3d(0, -${pullDom.offsetHeight}px, 0)`;
   }
 
   public handleCreatDownEl() {
