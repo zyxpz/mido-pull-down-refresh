@@ -1,11 +1,12 @@
 # h5-上拉加载下拉刷新
 
 name|types|default|说明
----|:--:|---:
+---|:--:|---:|---:
 wrap|HTML|无|滑动块
 pullDom|fun|<div class="pull-refresh">下拉刷新</div>|返回html字符串
 pullMoveEvent|fun|loop|拖动中事件处理
 pullEndEvent|fun|loop|拖动结束事件处理
+
 
 - 使用案例
 ```js
