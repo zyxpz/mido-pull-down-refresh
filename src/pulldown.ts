@@ -4,14 +4,19 @@ export default class PullDown {
   public pullDom: any;
   public pullMoveEvent: any;
   public pullEndEvent: any;
+  public down: boolean;
+  public downDom: HTMLElement;
   private startPos: number;
   private endPos: number;
   private pullDomHei: number;
   constructor(opts) {
     this.wrap = opts.wrap || null;
-    this.pullDom = opts.pullDom() || this.handleCreatDownEl(); // 渲染下拉模块
+    this.pullDom = opts.pullDom || this.handleCreatDownEl().defaultPullDom; // 渲染下拉模块
     this.pullMoveEvent = opts.pullMoveEvent || loop; // 拖动中的事件
     this.pullEndEvent = opts.pullEndEvent || loop; // 松手后的事件
+
+    this.down = opts.down || false;
+    this.downDom = opts.downDom || this.handleCreatDownEl().defaultDownDom; // 渲染上拉加载更多模块
   }
 
   public init() {
@@ -42,7 +47,10 @@ export default class PullDown {
   }
 
   private handleCreatDownEl() {
-    return '<div class="pull-refresh">下拉刷新</div>';
+    return {
+      defaultDownDom: '<div class="mido-down-more">上拉加载更多</div>',
+      defaultPullDom: '<div class="mido-pull-refresh">下拉刷新</div>',
+    };
   }
 
   private handleMoveEventListener() {
@@ -64,7 +72,9 @@ export default class PullDown {
       if (Math.abs(this.startPos - this.endPos) >= this.pullDomHei * 2) {
         this.wrap.style.cssText = `transform: translate3d(0, ${this.pullDomHei}px, 0);`;
       } else {
-        this.pullMoveEvent();
+        if (!/mido\-pull\-refresh/.test(this.pullDom)) {
+          this.pullMoveEvent();
+        }
 
         this.wrap.style.cssText = `transform: translate3d(0, ${this.endPos - this.startPos - this.pullDomHei}px, 0);`;
       }
@@ -75,9 +85,14 @@ export default class PullDown {
     const isMove = Math.abs(this.startPos - this.endPos);
 
     if (isMove > this.pullDomHei) {
-      this.pullEndEvent(() => {
+      if (!/mido\-pull\-refresh/.test(this.pullDom)) {
+        this.pullEndEvent(() => {
+          this.wrap.style.cssText = `transform: translate3d(0, -${this.pullDomHei}px, 0)`;
+        });
+      } else {
         this.wrap.style.cssText = `transform: translate3d(0, -${this.pullDomHei}px, 0)`;
-      });
+      }
+
     } else {
       this.wrap.style.cssText = `transform: translate3d(0, -${this.pullDomHei}px, 0)`;
     }

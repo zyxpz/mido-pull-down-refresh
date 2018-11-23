@@ -4,9 +4,7 @@ const wrap = document.querySelector('.J-wrap');
 
 const pulldown = new Pulldown({
   wrap,
-  pullDom: () => {
-    return '<div class="pull-top">moveStart</div>';
-  },
+  pullDom: '<div class="pull-top">moveStart</div>',
   pullMoveEvent: () => {
     document.querySelector('.pull-top').innerHTML = '下拉刷新';
   },
